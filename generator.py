@@ -10,7 +10,7 @@ INPUT = 'images.txt'
 GALLEY_PAGE = 'gallery_page_template.html'
 INDEX = 'index_template.html'
 NAVIGATION = 'navigation_template.html'
-OUTPUT_PATH = '../'
+OUTPUT_PATH = '../gallery'
 
 
 def create_page(prev, this, next, template, navigation_template, output):
