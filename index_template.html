@@ -1,0 +1,65 @@
+<html>
+ <head>
+  <META http-equiv="content-type" content="text/html; charset=unicode">
+  <title>
+   россыпью
+  </title>
+  <style>
+   .tumbVert {border: solid black 2px;}
+  </style>
+ </head>
+ <body style="background-color: #000000;">
+  <div style="text-align: center; padding: 10px;">
+   <img src="techImages/images.png" borger="0" width="128" height="32">
+  </div>  
+  <div id="main" style="width:450px;position: absolute; margin-left: -225px; left:50%; top: 80px; margin-top: 40px;">
+  </div>
+  <div style="text-align: right; padding: 20px;">
+   <a href="mailto:vladimir@yashunsky.ru" style="color: white;"><img src="techImages/mail.png" borger="0" width="64" height="64"></a>
+  </div>  
+  <div style="text-align: left; padding: 20px;">
+   <a href="scripts.html" style="color: white;"><img src="techImages/prevSmall.png" borger="0" width="32" height="32"><img src="techImages/scripts.png" borger="0" width="128" height="32"></a>
+  </div>
+ </body>
+ <script>
+var names=[{images}];
+
+ for (var j=0; j<(2*names.length); j++){
+  var id1=Math.floor(Math.random()*names.length);
+  var id2=Math.floor(Math.random()*names.length);
+  var tmp=names[id1];
+  names[id1]=names[id2];
+  names[id2]=tmp;
+ }
+ 
+ var topZ=1;
+  
+ function showInfo(value,id,action){
+  if (action){
+   topZ=topZ+1;
+   value.parentNode.parentNode.style.zIndex=topZ;
+   value.src="images/thBig/"+names[id];
+   value.style.margin="-60px -60px -60px -60px";
+  }else{
+   value.src="images/thVert/"+names[id];
+   value.style.margin="-60px -10px -60px -10px";
+
+   }
+ }
+ 
+ var mainObj=document.getElementById("main");
+ for (var i=0; i<names.length; i++){
+  var src="images/thVert/"+names[i];
+  var x=(i%4)*120+Math.floor(Math.random()*30)-15;
+  var y=Math.floor(i/4)*200+Math.floor(Math.random()*30);
+  var a=Math.floor(Math.random()*40)-20;
+
+  var DIVstyle="width: 80px; height: 80px; -webkit-transform:rotate("+a+"deg); -moz-transform:rotate("+a+"deg); position: absolute; left:"+x+"; top:"+y+";";
+
+  var IMGstyle="border: solid 10px white; margin: -60px -10px -60px -10px;"; 
+
+  var fn=names[i].split('.');
+  mainObj.innerHTML=mainObj.innerHTML+'<div style="'+DIVstyle+'"><a href="'+fn[0]+'.html"><img style="'+IMGstyle+'" src="'+src+'" onmouseover="showInfo(this,'+i+',true);" onmouseout="showInfo(this,'+i+',false);"></a></div>';
+ }
+</script>
+</html>

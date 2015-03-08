@@ -8,6 +8,7 @@ from os.path import join
 
 INPUT = 'images.txt'
 GALLEY_PAGE = 'gallery_page_template.html'
+INDEX = 'index_template.html'
 NAVIGATION = 'navigation_template.html'
 OUTPUT_PATH = '../'
 
@@ -28,6 +29,11 @@ def create_page(prev, this, next, template, navigation_template, output):
     with open(join(OUTPUT_PATH, this['page']), 'w') as html_file:
         html_file.write(html)
 
+def create_index(images_list, template, output):
+    images = ',\n'.join(['"%s"' % image['image'] for image in images_list[1:-1]])
+    html = template.replace('{images}', images)
+    with open(join(OUTPUT_PATH, 'index.html'), 'w') as html_file:
+        html_file.write(html)    
 
 if __name__ == '__main__':
     with open(GALLEY_PAGE, 'r') as template_file:
@@ -35,6 +41,9 @@ if __name__ == '__main__':
 
     with open(NAVIGATION, 'r') as template_file:
         navigation_template = template_file.read()
+
+    with open(INDEX, 'r') as template_file:
+        index_template = template_file.read()
 
 
     images = [None]
@@ -52,3 +61,5 @@ if __name__ == '__main__':
                     gallery_page_template,
                     navigation_template,
                     OUTPUT_PATH)
+
+    create_index(images, index_template, OUTPUT_PATH)
