@@ -49,6 +49,7 @@ if __name__ == '__main__':
     images = [None]
     with open(INPUT, 'r') as input_file:
         for line in input_file:
+            print line.rstrip() # tor debug
             filename, title, description = line.rstrip().split('\t')
             images.append({'image': filename,
                            'page': filename.split('.')[0]+'.html',
